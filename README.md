@@ -50,4 +50,4 @@ Then open http://localhost:5173/portfolio/.
 ## Notes
 
 - The contact form opens the visitor's email app with the message filled in, because GitHub Pages can't run a server to receive messages.
-- The earlier version, with an Express + SQLite backend and an `/admin` editor, is preserved in git history at commit `2fe48db`.
+- The earlier version, with an Express + SQLite backend and an `/admin` editor, is preserved in git history at commit `1172808`.
