@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { content, publishedPosts } from '../../lib/content.js'
+import { content, initials, publishedPosts } from '../../lib/content.js'
 import AppIcon from '../AppIcon.vue'
 
 const open = ref(false)
@@ -47,11 +47,11 @@ watch(open, (v) => {
       :class="scrolled || open ? 'bg-glass shadow-[0_1px_0_var(--separator)] backdrop-blur-xl backdrop-saturate-150' : ''"
     >
       <nav class="container-page flex h-16 items-center justify-between" aria-label="Main">
-        <a href="#top" class="flex items-center gap-2.5 rounded-full font-semibold" @click="open = false">
-          <span class="grid size-9 place-items-center rounded-full bg-accent text-[15px] font-bold text-on-accent">
-            {{ (content.profile?.name || 'P')[0] }}
+        <a href="#top" class="flex items-center gap-2.5 rounded-full font-semibold" :aria-label="`${content.profile?.name} — back to top`" @click="open = false">
+          <span class="grid size-9 place-items-center rounded-full bg-accent text-[13px] font-bold tracking-wide text-on-accent" aria-hidden="true">
+            {{ initials(content.profile?.name) }}
           </span>
-          <span class="text-[17px]">{{ content.profile?.name?.split(' ')[0] }}</span>
+          <span class="text-[17px] tracking-tight">{{ content.profile?.name }}</span>
         </a>
 
         <ul class="hidden items-center gap-1 lg:flex">
