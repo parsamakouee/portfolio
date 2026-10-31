@@ -39,7 +39,11 @@ function submit() {
                 <span class="grid size-10 place-items-center rounded-xl bg-accent-soft text-accent"><AppIcon :name="r.icon" /></span>
                 <span class="min-w-0">
                   <span class="block text-sm text-label-2">{{ r.label }}</span>
-                  <span class="block font-medium [overflow-wrap:break-word]">
+                  <!-- several places ("Istanbul, Turkey · Toronto, Canada") go one per line -->
+                  <template v-if="r.icon === 'pin'">
+                    <span v-for="place in r.value.split(' · ')" :key="place" class="block font-medium">{{ place }}</span>
+                  </template>
+                  <span v-else class="block font-medium [overflow-wrap:break-word]">
                     <!-- lets long emails break before the @ instead of mid-word -->
                     <template v-for="(part, i) in r.value.split('@')" :key="i"><wbr v-if="i" />{{ i ? '@' : '' }}{{ part }}</template>
                   </span>
