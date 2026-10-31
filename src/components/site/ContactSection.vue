@@ -39,7 +39,10 @@ function submit() {
                 <span class="grid size-10 place-items-center rounded-xl bg-accent-soft text-accent"><AppIcon :name="r.icon" /></span>
                 <span class="min-w-0">
                   <span class="block text-sm text-label-2">{{ r.label }}</span>
-                  <span class="block truncate font-medium">{{ r.value }}</span>
+                  <span class="block font-medium [overflow-wrap:break-word]">
+                    <!-- lets long emails break before the @ instead of mid-word -->
+                    <template v-for="(part, i) in r.value.split('@')" :key="i"><wbr v-if="i" />{{ i ? '@' : '' }}{{ part }}</template>
+                  </span>
                 </span>
               </component>
             </li>
