@@ -1,0 +1,81 @@
+// Starting content, taken from Parsa's CV. Everything here is editable in /admin;
+// once a section is saved there, the database copy wins and this file is ignored for it.
+export const seed = {
+  profile: {
+    name: 'Parsa Makouee',
+    credential: 'M.Sc.',
+    role: 'IT Infrastructure & Systems Specialist',
+    headline: 'I keep the systems behind your business fast, secure and quietly reliable.',
+    intro:
+      'IT specialist with 9+ years designing networks, running virtualized infrastructure and administering systems for healthcare, pharma and retail teams. I pair hands-on engineering with a Master’s in Entrepreneurship, so every technical decision is tied to what the business needs.',
+    photo: '',
+    location: 'Toronto, Canada',
+    email: 'parsa.makouee@gmail.com',
+    emailAlt: 'parsa.makouee@gmail.com',
+    phone: '+1 (515) 428-0781',
+    available: true,
+    availabilityText: 'Open to IT roles and consulting projects',
+    cvUrl: '',
+    linkedin: '',
+    github: '',
+  },
+  stats: [
+    { value: '9+', label: 'Years in IT' },
+    { value: '4', label: 'Organizations supported' },
+    { value: 'MCSA', label: 'Microsoft certified' },
+  ],
+  about: {
+    title: 'Engineer by training, problem-solver by habit.',
+    body:
+      'I started in computer engineering, writing my B.Sc. thesis on wireless sensor networks for the Internet of Things. Since 2017 I’ve run the infrastructure that real teams depend on every day — from ESXi clusters at a pharmaceutical company to the clinical network of a growing medical practice.\n\nMy M.Sc. in Entrepreneurship Management taught me to look at technology the way owners do: as an investment that has to pay off in uptime, security and speed. Today I combine both views to plan, build and run IT that scales with the organization.',
+    highlights: [
+      'M.Sc. Entrepreneurship Management — ranked 5th of 40 (top 5%)',
+      'B.Sc. Computer Engineering',
+      'MCSA certified — Windows Server',
+      'IELTS Academic 6.5 (Listening 8.0)',
+    ],
+  },
+  services: [
+    { icon: 'server', title: 'Infrastructure & Virtualization', description: 'Plan, deploy and tune VMware ESXi hosts and virtual machines so workloads stay available and hardware is used efficiently.' },
+    { icon: 'network', title: 'Network Design & Implementation', description: 'Design wired and wireless networks that are segmented, documented and built to grow with the organization.' },
+    { icon: 'shield', title: 'Systems Administration', description: 'Windows Server, Active Directory, backups and patching — run day to day with clear procedures and monitoring.' },
+    { icon: 'gauge', title: 'IT Optimization', description: 'Audit existing infrastructure, remove bottlenecks and single points of failure, and cut costs without cutting reliability.' },
+    { icon: 'chat', title: 'Technical Consulting', description: 'Turn business goals into a practical IT roadmap, with options, trade-offs and budgets explained in plain language.' },
+    { icon: 'code', title: 'Web Development', description: 'Responsive, user-centred web interfaces built with Vue.js, React, JavaScript, HTML and CSS.' },
+  ],
+  process: [
+    { title: 'Assess', description: 'Map what you have today: hardware, network, users, risks and the pain points your team feels.' },
+    { title: 'Design', description: 'Propose an architecture and a phased plan with clear costs, so nothing surprises you later.' },
+    { title: 'Implement', description: 'Build and migrate with minimal downtime, testing every step and documenting as I go.' },
+    { title: 'Support', description: 'Monitor, maintain and keep improving, with handover notes your team can actually use.' },
+  ],
+  experience: [
+    { company: 'Neda Clinic', role: 'IT Manager', period: '2021 — Present', url: 'http://www.nedaclinic.co/', points: ['Lead IT for the clinic’s therapeutic network', 'Drove the “smart clinic” upgrade of systems and connectivity'] },
+    { company: 'Citizen Watch Company (Iran branch)', role: 'Systems Administrator', period: '2019 — Present', url: 'https://www.saati.watch/', points: ['Administer servers, endpoints and user accounts', 'Keep retail and office systems secure and available'] },
+    { company: 'Rastagene Pharmaceutical Company', role: 'Infrastructure Engineer & Network Administrator', period: '2019 — 2021', url: 'https://www.rastagene.com/', points: ['Developed and maintained the VMware ESXi virtualization platform', 'Administered the company network', 'Reviewed system additions and advised management on implementation'] },
+    { company: 'Shob Company (LLC)', role: 'IT Specialist', period: '2017 — Present', url: 'https://www.shobtech.com', points: ['Manage IT infrastructure end to end', 'Provide software technical expertise to internal teams'] },
+  ],
+  projects: [
+    { title: 'Smart clinic network', category: 'Networking', client: 'Neda Clinic', summary: 'Modernized the clinic’s therapeutic network — connecting systems and devices so staff spend less time on IT and more on patients.', tags: ['Network design', 'Healthcare IT'], image: '', url: '' },
+    { title: 'ESXi virtualization platform', category: 'Infrastructure', client: 'Rastagene Pharmaceutical', summary: 'Built and maintained a VMware ESXi environment hosting the company’s virtual machines, improving resource use and recovery options.', tags: ['VMware ESXi', 'Virtualization'], image: '', url: '' },
+    { title: 'End-to-end IT operations', category: 'Infrastructure', client: 'Shob Company', summary: 'Long-term ownership of infrastructure and software support for a technology company since 2017.', tags: ['IT management', 'Support'], image: '', url: '' },
+    { title: 'Retail systems administration', category: 'Systems', client: 'Citizen Watch Iran', summary: 'Administration of servers, accounts and endpoints across office and retail operations.', tags: ['Windows Server', 'MCSA'], image: '', url: '' },
+    { title: 'Gamification & programmer efficiency', category: 'Research', client: 'M.Sc. thesis, IUST', summary: 'Studied how gamification affects the efficiency of software developers — research behind my Master’s degree.', tags: ['Research', 'Software teams'], image: '', url: '' },
+  ],
+  skills: [
+    { group: 'Infrastructure', items: ['VMware ESXi', 'Windows Server (MCSA)', 'Active Directory', 'Backup & recovery'] },
+    { group: 'Networking', items: ['Network design', 'LAN / WLAN', 'IoT & sensor networks', 'Troubleshooting'] },
+    { group: 'Development', items: ['JavaScript', 'Vue.js', 'React', 'Python', 'HTML & CSS'] },
+    { group: 'Leadership', items: ['Project management', 'Technical consulting', 'Cross-functional teams', 'Vendor management'] },
+  ],
+  education: [
+    { degree: 'M.Sc. Entrepreneurship Management in New Businesses', school: 'Iran University of Science and Technology, Tehran', year: '2024', details: 'Thesis: The effect of gamification on the efficiency of programmers · GPA 3.36 / 4 · Ranked 5th of 40 (top 5%)' },
+    { degree: 'B.Sc. Computer Engineering', school: 'Azad University, Central Tehran Branch', year: '2019', details: 'Thesis: Wireless sensor networks in the field of the Internet of Things' },
+  ],
+  credentials: [
+    { title: 'MCSA — Microsoft Certified Solutions Associate', issuer: 'Microsoft', date: '', detail: 'Windows Server infrastructure' },
+    { title: 'IELTS Academic — Overall 6.5', issuer: 'IELTS', date: 'January 2025', detail: 'Listening 8.0 · Reading 6.5 · Speaking 6.0 · Writing 6.0' },
+    { title: 'Designing a model to identify factors affecting new product development performance', issuer: 'Journal article (Persian) — under revision', date: '', detail: 'With Dr. Javad Mashayekh and Nazanin Miraliakbar · meta-synthesis approach' },
+  ],
+  posts: [],
+}
