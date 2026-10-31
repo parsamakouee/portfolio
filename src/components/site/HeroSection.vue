@@ -51,13 +51,14 @@ const p = computed(() => content.profile || {})
         </dl>
       </div>
 
-      <div class="relative mx-auto w-full max-w-sm lg:max-w-none">
-        <div class="card relative aspect-[4/5] overflow-hidden rounded-[2rem] p-2">
+      <div class="relative mx-auto w-full max-w-sm lg:max-w-md">
+        <div class="card relative aspect-square overflow-hidden rounded-full p-2">
+          <!-- object position keeps the face in the circle when the photo is taller than wide -->
           <img
             v-if="p.photo" :src="asset(p.photo)" :alt="`Portrait of ${p.name}`"
-            class="size-full rounded-[1.6rem] object-cover"
+            class="size-full rounded-full object-cover object-[50%_25%]"
           />
-          <div v-else class="relative grid size-full place-items-center overflow-hidden rounded-[1.6rem] bg-surface">
+          <div v-else class="relative grid size-full place-items-center overflow-hidden rounded-full bg-surface">
             <!-- network motif: the placeholder hints at the work until a photo is uploaded -->
             <svg class="absolute inset-0 size-full text-accent/25" viewBox="0 0 400 500" fill="none" aria-hidden="true">
               <g stroke="currentColor" stroke-width="1.5">
@@ -74,7 +75,7 @@ const p = computed(() => content.profile || {})
             </span>
           </div>
         </div>
-        <p class="card absolute -bottom-5 left-4 flex items-center gap-2 rounded-2xl px-4 py-3 text-sm font-medium sm:-left-6">
+        <p class="card absolute -bottom-4 left-1/2 flex w-max max-w-[92%] -translate-x-1/2 items-center gap-2 rounded-2xl px-4 py-3 text-sm font-medium">
           <AppIcon name="pin" :size="18" class="text-accent" /> {{ p.location }}
         </p>
       </div>
