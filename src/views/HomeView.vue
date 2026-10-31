@@ -20,20 +20,18 @@ watchEffect(() => {
 </script>
 
 <template>
-  <template>
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent">Skip to content</a>
-    <NavBar />
-    <main id="main">
-      <HeroSection />
-      <AboutSection />
-      <ServicesSection />
-      <ProcessSection />
-      <ExperienceSection />
-      <WorkSection />
-      <CredentialsSection />
-      <BlogSection />
-      <ContactSection />
-    </main>
-    <SiteFooter />
-  </template>
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent">Skip to content</a>
+  <NavBar />
+  <main id="main">
+    <HeroSection />
+    <AboutSection />
+    <ServicesSection />
+    <ProcessSection />
+    <ExperienceSection />
+    <WorkSection />
+    <CredentialsSection />
+    <BlogSection />
+    <ContactSection />
+  </main>
+  <SiteFooter />
 </template>
