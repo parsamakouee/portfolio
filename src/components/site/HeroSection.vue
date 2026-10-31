@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { content, initials } from '../../lib/content.js'
+import { asset, content, initials } from '../../lib/content.js'
 import AppIcon from '../AppIcon.vue'
 
 const p = computed(() => content.profile || {})
@@ -29,7 +29,7 @@ const p = computed(() => content.profile || {})
 
         <div class="mt-8 flex flex-wrap gap-3">
           <a href="#contact" class="btn-primary">Say hello <AppIcon name="arrowRight" :size="18" /></a>
-          <a v-if="p.cvUrl" :href="p.cvUrl" target="_blank" rel="noopener" class="btn-secondary">
+          <a v-if="p.cvUrl" :href="asset(p.cvUrl)" target="_blank" rel="noopener" class="btn-secondary">
             <AppIcon name="download" :size="18" /> Download CV
           </a>
           <a v-else href="#work" class="btn-secondary">See my work</a>
@@ -46,7 +46,7 @@ const p = computed(() => content.profile || {})
       <div class="relative mx-auto w-full max-w-sm lg:max-w-none">
         <div class="card relative aspect-[4/5] overflow-hidden rounded-[2rem] p-2">
           <img
-            v-if="p.photo" :src="p.photo" :alt="`Portrait of ${p.name}`"
+            v-if="p.photo" :src="asset(p.photo)" :alt="`Portrait of ${p.name}`"
             class="size-full rounded-[1.6rem] object-cover"
           />
           <div v-else class="relative grid size-full place-items-center overflow-hidden rounded-[1.6rem] bg-surface">

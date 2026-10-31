@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { content } from '../../lib/content.js'
+import { asset, content } from '../../lib/content.js'
 import AppIcon from '../AppIcon.vue'
 import SectionHeader from './SectionHeader.vue'
 
@@ -28,7 +28,7 @@ const categoryIcon = { Networking: 'network', Infrastructure: 'server', Systems:
       <TransitionGroup tag="ul" move-class="transition duration-300" class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <li v-for="p in shown" :key="p.title" class="card flex flex-col overflow-hidden">
           <div class="aspect-[16/10] bg-accent-soft">
-            <img v-if="p.image" :src="p.image" :alt="p.title" class="size-full object-cover" loading="lazy" />
+            <img v-if="p.image" :src="asset(p.image)" :alt="p.title" class="size-full object-cover" loading="lazy" />
             <div v-else class="grid size-full place-items-center text-accent">
               <AppIcon :name="categoryIcon[p.category] || 'layers'" :size="44" />
             </div>

@@ -1,6 +1,5 @@
 <script setup>
 import { computed, reactive, ref } from 'vue'
-import { api } from '../../lib/api.js'
 import { content } from '../../lib/content.js'
 import AppIcon from '../AppIcon.vue'
 import SectionHeader from './SectionHeader.vue'
@@ -15,21 +14,16 @@ const rows = computed(() => [
   p.value.github && { icon: 'github', label: 'GitHub', value: 'View profile', href: p.value.github },
 ].filter(Boolean))
 
-const form = reactive({ name: '', email: '', subject: '', body: '', website: '' })
-const status = ref('idle') // idle | sending | sent | error
-const error = ref('')
+// A static site has no server to receive messages, so the form drafts an
+// email in the visitor's own mail app, addressed to Parsa.
+const form = reactive({ name: '', email: '', subject: '', body: '' })
+const status = ref('idle') // idle | opened
 
-async function submit() {
-  status.value = 'sending'
-  error.value = ''
-  try {
-    await api.post('/api/messages', form)
-    status.value = 'sent'
-    Object.assign(form, { name: '', email: '', subject: '', body: '' })
-  } catch (e) {
-    error.value = e.message
-    status.value = 'error'
-  }
+function submit() {
+  const subject = form.subject || `Message from ${form.name}`
+  const body = `${form.body}\n\n— ${form.name} (${form.email})`
+  window.location.href = `mailto:${p.value.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+  status.value = 'opened'
 }
 </script>
 
@@ -53,12 +47,15 @@ async function submit() {
         </div>
 
         <div v-reveal class="card p-6 sm:p-8">
-          <div v-if="status === 'sent'" class="grid min-h-80 place-items-center text-center" role="status">
+          <div v-if="status === 'opened'" class="grid min-h-80 place-items-center text-center" role="status">
             <div>
-              <span class="mx-auto grid size-14 place-items-center rounded-full bg-success/15 text-success"><AppIcon name="check" :size="28" /></span>
-              <h3 class="mt-4 text-2xl font-semibold">Message sent</h3>
-              <p class="mt-2 text-label-2">Thanks for reaching out — I’ll get back to you soon.</p>
-              <button class="btn-secondary mt-6" @click="status = 'idle'">Send another message</button>
+              <span class="mx-auto grid size-14 place-items-center rounded-full bg-accent-soft text-accent"><AppIcon name="mail" :size="28" /></span>
+              <h3 class="mt-4 text-2xl font-semibold">Finish in your email app</h3>
+              <p class="mx-auto mt-2 max-w-sm text-label-2">
+                Your message is ready to send in your email app. If nothing opened, email me directly at
+                <a :href="`mailto:${p.email}`" class="font-medium text-accent underline">{{ p.email }}</a>.
+              </p>
+              <button class="btn-secondary mt-6" @click="status = 'idle'">Back to the form</button>
             </div>
           </div>
 
@@ -79,15 +76,11 @@ async function submit() {
               <label for="c-body" class="field-label">Message</label>
               <textarea id="c-body" v-model="form.body" rows="6" class="field resize-y" required maxlength="5000" placeholder="Tell me a little about what you need…" />
             </div>
-            <!-- honeypot: hidden from people and assistive tech -->
-            <div aria-hidden="true" hidden>
-              <input v-model="form.website" type="text" name="website" tabindex="-1" autocomplete="off" />
-            </div>
-            <p v-if="error" class="text-sm text-danger sm:col-span-2" role="alert">{{ error }}</p>
             <div class="sm:col-span-2">
-              <button type="submit" class="btn-primary w-full sm:w-auto" :disabled="status === 'sending'">
-                {{ status === 'sending' ? 'Sending…' : 'Send message' }}
+              <button type="submit" class="btn-primary w-full sm:w-auto">
+                <AppIcon name="mail" :size="18" /> Write email
               </button>
+              <p class="mt-2 text-[13px] text-label-2">Opens your email app with this message ready to send.</p>
             </div>
           </form>
         </div>

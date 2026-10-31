@@ -1,43 +1,53 @@
 # Parsa Makouee — Portfolio
 
-A personal portfolio built with **Vue 3 + Tailwind CSS v4**, plus a small **Node/Express + SQLite** backend and a password-protected editor at `/admin`.
+**Live site: https://parsamakouee.github.io/portfolio/**
 
-Layout follows the Picto Figma template (hero → about → services → process → experience → portfolio → credentials → blog → contact). The visual style follows Apple's Human Interface Guidelines: system typography, light and dark modes that follow the device, 44 pt touch targets, WCAG-AA contrast, and support for reduced motion and reduced transparency.
+A personal portfolio built with **Vue 3 + Tailwind CSS v4** and hosted for free on **GitHub Pages**. The layout follows the Picto Figma template, and the styling follows Apple's Human Interface Guidelines: system typography, automatic light and dark modes, 44 pt touch targets, WCAG-AA contrast, and support for reduced motion.
 
-## Run it
+## Editing the site
 
-Requires Node 22.13 or newer (it uses the built-in `node:sqlite`).
+All of the text lives in one file: **[`content.json`](content.json)**.
+
+1. Open `content.json` on GitHub and click the ✏️ pencil icon.
+2. Change the text you want, keeping the quotes and commas as they are.
+3. Click **Commit changes**.
+
+GitHub rebuilds and republishes the site in about a minute. You can follow the progress in the **Actions** tab.
+
+### Adding your photo or CV
+
+1. Open the [`public/images`](public/images) folder on GitHub and choose **Add file → Upload files**.
+2. Upload, for example, `parsa.jpg` and `Parsa-Makouee-CV.pdf`.
+3. In `content.json`, set `"photo": "images/parsa.jpg"` and `"cvUrl": "images/Parsa-Makouee-CV.pdf"`. A **Download CV** button appears once `cvUrl` is set.
+
+### Writing a blog post
+
+Add an entry to the `"posts"` list in `content.json`:
+
+```json
+{
+  "title": "Migrating a clinic network with zero downtime",
+  "slug": "clinic-network-migration",
+  "date": "2026-11-15",
+  "excerpt": "One-sentence summary shown on the card.",
+  "body": "First paragraph.\n\nSecond paragraph.",
+  "cover": "images/clinic.jpg",
+  "published": true
+}
+```
+
+The Blog section appears once at least one post has `"published": true`. Each post lives at `/portfolio/blog/<slug>`.
+
+## Working on it locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-- Site: http://localhost:5173
-- Editor: http://localhost:5173/admin
+Then open http://localhost:5173/portfolio/.
 
-On first start the server creates `.env` with a random `ADMIN_PASSWORD`. Open `.env` to see or change it, then restart.
+## Notes
 
-## Production
-
-```bash
-npm run build
-npm start
-```
-
-`npm start` serves the built site and the API together on `API_PORT` (default 3001). Put it behind HTTPS (Nginx, Caddy, or a host such as Render or Railway) and set `NODE_ENV=production` so the login cookie is marked secure.
-
-## What you can edit in /admin
-
-Profile (photo, intro, contact details, CV PDF, LinkedIn and GitHub), stats, about, skills, services, process steps, experience, portfolio projects (with cover images), education, certifications, and blog posts (draft or published). Messages sent through the contact form appear under **Messages**.
-
-## Where things live
-
-| Path | What |
-| --- | --- |
-| `server/` | Express API, auth, and the starting content taken from the CV (`seed.js`) |
-| `data/portfolio.db` | The SQLite database. Back this file up |
-| `data/uploads/` | Uploaded images and PDFs. Back this folder up too |
-| `src/components/site/` | The public page sections |
-| `src/admin/schema.js` | Defines every editable field. Add a field here and it appears in the editor |
-| `src/style.css` | Design tokens: colors for light and dark, type, buttons, and cards |
+- The contact form opens the visitor's email app with the message filled in, because GitHub Pages can't run a server to receive messages.
+- The earlier version, with an Express + SQLite backend and an `/admin` editor, is preserved in git history at commit `2fe48db`.

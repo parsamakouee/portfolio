@@ -1,21 +1,13 @@
-import { reactive, ref } from 'vue'
-import { api } from './api.js'
+import { reactive } from 'vue'
+import data from '../../content.json'
 
-// Site content shared by the public pages and the admin editor.
-export const content = reactive({})
-export const loaded = ref(false)
-export const loadError = ref('')
+// All site text lives in /content.json. Edit it and push; GitHub rebuilds the site.
+export const content = reactive(data)
 
-export async function loadContent() {
-  try {
-    Object.assign(content, await api.get('/api/content'))
-    loadError.value = ''
-  } catch (e) {
-    loadError.value = e.message
-  } finally {
-    loaded.value = true
-  }
-}
+// Files in /public are served under the site's base path (/portfolio/).
+// Accepts "images/me.jpg", "/images/me.jpg" or a full https:// URL.
+export const asset = (url) =>
+  !url || /^(https?:|mailto:|data:)/.test(url) ? url : import.meta.env.BASE_URL + url.replace(/^\//, '')
 
 export const publishedPosts = () =>
   (content.posts || []).filter((p) => p.published).sort((a, b) => String(b.date).localeCompare(String(a.date)))

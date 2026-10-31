@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { formatDate, publishedPosts } from '../../lib/content.js'
+import { asset, formatDate, publishedPosts } from '../../lib/content.js'
 import AppIcon from '../AppIcon.vue'
 import SectionHeader from './SectionHeader.vue'
 
@@ -14,7 +14,7 @@ const posts = computed(publishedPosts)
       <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <li v-for="p in posts" :key="p.slug" v-reveal>
           <RouterLink :to="`/blog/${p.slug}`" class="card group flex h-full flex-col overflow-hidden">
-            <img v-if="p.cover" :src="p.cover" alt="" class="aspect-[16/9] w-full object-cover" loading="lazy" />
+            <img v-if="p.cover" :src="asset(p.cover)" alt="" class="aspect-[16/9] w-full object-cover" loading="lazy" />
             <div class="flex flex-1 flex-col p-6">
               <time class="text-sm text-label-2" :datetime="p.date">{{ formatDate(p.date) }}</time>
               <h3 class="mt-1 text-xl font-semibold tracking-tight group-hover:text-accent">{{ p.title }}</h3>
