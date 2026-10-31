@@ -35,7 +35,9 @@ function submit() {
           <SectionHeader eyebrow="Contact" title="Let’s talk about your infrastructure" lede="Have a role, a project or a problem that needs a second pair of eyes? Send a message and I’ll reply within two business days." class="!mb-8" />
           <ul class="card divide-y divide-separator overflow-hidden">
             <li v-for="r in rows" :key="r.label">
-              <component :is="r.href ? 'a' : 'div'" :href="r.href" class="flex min-h-14 items-center gap-4 px-5 py-3" :class="r.href && 'hover:bg-surface'">
+              <component
+                :is="r.href ? 'a' : 'div'" :href="r.href"
+                v-bind="r.href?.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {}" class="flex min-h-14 items-center gap-4 px-5 py-3" :class="r.href && 'hover:bg-surface'">
                 <span class="grid size-10 place-items-center rounded-xl bg-accent-soft text-accent"><AppIcon :name="r.icon" /></span>
                 <span class="min-w-0">
                   <span class="block text-sm text-label-2">{{ r.label }}</span>

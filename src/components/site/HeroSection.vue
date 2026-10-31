@@ -33,6 +33,14 @@ const p = computed(() => content.profile || {})
             <AppIcon name="download" :size="18" /> Download CV
           </a>
           <a v-else href="#work" class="btn-secondary">See my work</a>
+          <a
+            v-if="p.linkedin" :href="p.linkedin" target="_blank" rel="noopener"
+            class="btn-plain size-11 px-0 ring-1 ring-separator" aria-label="LinkedIn profile" title="LinkedIn"
+          ><AppIcon name="linkedin" /></a>
+          <a
+            v-if="p.github" :href="p.github" target="_blank" rel="noopener"
+            class="btn-plain size-11 px-0 ring-1 ring-separator" aria-label="GitHub profile" title="GitHub"
+          ><AppIcon name="github" /></a>
         </div>
 
         <dl v-if="content.stats?.length" class="card mt-12 grid grid-cols-3 divide-x divide-separator overflow-hidden">
